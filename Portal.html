@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Transcript Portal</title>
+    <style>
+        /* --- COLOR THEME --- */
+        :root {
+            --primary-blue: #004a99; /* Academic Blue */
+            --primary-red: #c62828;  /* Accent Red */
+            --bg-light: #eef2f6;
+        }
+
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: var(--bg-light); 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            margin: 0; 
+            padding: 20px; 
+        }
+
+        /* The main container box */
+        .portal-box { 
+            background: white; 
+            padding: 40px; 
+            border-radius: 12px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+            width: 100%; 
+            max-width: 400px; /* Start narrow for login */
+            text-align: center; 
+            border-top: 5px solid var(--primary-blue);
+            transition: all 0.3s ease-in-out;
+        }
+        
+        /* Class added via JS to expand box upon login */
+        .portal-box.expanded {
+            max-width: 900px; 
+        }
+
+        /* Logo styling */
+        .logo {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+
+        h2 { color: var(--primary-blue); margin-top: 0; }
+        p { color: #666; }
+
+        /* Input styling */
+        input { 
+            width: 90%; 
+            padding: 12px; 
+            margin: 10px 0; 
+            border: 2px solid #ddd; 
+            border-radius: 6px; 
+            font-size: 14px;
+        }
+        input:focus { border-color: var(--primary-blue); outline: none; }
+
+        /* General Button Styling */
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+            margin-top: 10px;
+        }
+
+        /* Specific Blue and Red Buttons */
+        .btn-blue { background-color: var(--primary-blue); color: white; }
+        .btn-blue:hover { background-color: #003370; }
+        
+        .btn-red { background-color: var(--primary-red); color: white; }
+        .btn-red:hover { background-color: #9f1f1f; }
+
+        .error { color: var(--primary-red); font-size: 14px; margin-top: 15px; display: none; font-weight: bold;}
+
+        /* --- DOWNLOAD AREA STYLES --- */
+        #download-area { display: none; margin-top: 30px; text-align: left;}
+        
+        .top-actions {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        /* The download link needs to look like a button */
+        a.download-button-link {
+            display: inline-block;
+            text-decoration: none;
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: bold;
+            flex-grow: 1; /* Make it take available space */
+            text-align: center;
+        }
+        a.download-button-link:hover { background-color: #003370; }
+
+        .logout-btn-small {
+            width: auto; /* Override 100% width */
+            padding: 12px 20px;
+            margin-top: 0;
+        }
+
+        /* The PDF display frame */
+        #pdf-frame {
+            width: 100%;
+            height: 600px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="portal-box" id="main-box">
+        <img src="logo.png" alt="School Logo" class="logo">
+
+        <div id="login-section">
+            <h2>Transcript Portal</h2>
+            <p>Please enter your student details to log in.</p>
+            
+            <input type="text" id="fname" placeholder="Forename (e.g. Takunda)">
+            <input type="text" id="sname" placeholder="Surname (e.g. Matogo)">
+            <input type="text" id="sid" placeholder="Student ID (e.g. CPS123027)">
+            
+            <button class="btn btn-blue" onclick="checkLogin()">LOG IN</button>
+            
+            <p id="error-msg" class="error">Details not found. Please check spelling and ID.</p>
+        </div>
+
+        <div id="download-area">
+            
+            <div class="top-actions">
+                <a id="final-download-btn" class="download-button-link" href="#" download>DOWNLOAD PDF NOW</a>
+                <button class="btn btn-red logout-btn-small" onclick="location.reload()">Log Out</button>
+            </div>
+
+            <iframe id="pdf-frame" src="">
+                <p>Your browser does not support embedded PDFs. Please use the download button above.</p>
+            </iframe>
+
+        </div>
+    </div>
+
+    <script>
+        // --- STUDENT DATA ---
+        const students = [
+            { id: "CPS26036", fname: "Immaculate Tariro", sname: "Makuwe" },
+            { id: "CPS26037", fname: "Justin", sname: "Zuze" },
+            { id: "CPS26038", fname: "Killian", sname: "Marufu" },
+            { id: "CPS26039", fname: "Lansasta", sname: "Mukohwa" },
+            { id: "CPS26040", fname: "Livingstone", sname: "Mashange" },
+            { id: "CPS26041", fname: "Manyara Concillia", sname: "Marindwa" },
+            { id: "CPS26043", fname: "Mona Lisa", sname: "Sihlahla" },
+            { id: "CPS26042", fname: "Monalisa Rumbidzai", sname: "Lifa" },
+            { id: "CPS26044", fname: "Natsai", sname: "Mushayi" },
+            { id: "CPS26045", fname: "Noreen Kudzai", sname: "Sithole" },
+            { id: "CPS26047", fname: "Privilege Tamiswa", sname: "Tapi" },
+            { id: "CPS26048", fname: "Purity", sname: "Manyowa" },
+            { id: "CPS26049", fname: "Qhubekani", sname: "Tshuma" },
+            { id: "CPS26050", fname: "Richard Tanaka", sname: "Kapamba" },
+            { id: "CPS26051", fname: "Voronica", sname: "Chisanga" },
+            { id: "CPS26052", fname: "Yeukai", sname: "Maradzika" },
+            { id: "CPS26027", fname: "Bekezeila", sname: "Chakuinga" },
+            { id: "CPS26028", fname: "Beldonah Tanaka", sname: "Katsidzira" },
+            { id: "CPS26029", fname: "Caroline", sname: "Magadza" },
+            { id: "CPS26030", fname: "Cecilia", sname: "Majasi" },
+            { id: "CPS26031", fname: "Courage S.", sname: "Mukundu" },
+            { id: "CPS26032", fname: "Dorothy Mitchell", sname: "Chiangwa" },
+            { id: "CPS26046", fname: "Dr Persistance", sname: "Machingauta" },
+            { id: "CPS26033", fname: "Edina", sname: "Marunda Tsarara" },
+            { id: "CPS26034", fname: "Gillian R.", sname: "Lifa" },
+            { id: "CPS26035", fname: "Hamunyari", sname: "Makonese" }
+        ];
+
+        function checkLogin() {
+            var userFname = document.getElementById("fname").value.trim().toLowerCase();
+            var userSname = document.getElementById("sname").value.trim().toLowerCase();
+            var userId = document.getElementById("sid").value.trim();
+
+            var found = false;
+            var studentId = "";
+
+            // Search for match
+            for (var i = 0; i < students.length; i++) {
+                var s = students[i];
+                if (s.id === userId && s.fname.toLowerCase() === userFname && s.sname.toLowerCase() === userSname) {
+                    found = true;
+                    studentId = s.id;
+                    break;
+                }
+            }
+
+            if (found) {
+                // --- SUCCESS ---
+                document.getElementById("error-msg").style.display = "none";
+
+                // 1. Define the link path
+                var finalLink = "transcripts/" + studentId + ".pdf";
+
+                // 2. Expand the box to fit the PDF viewer
+                document.getElementById("main-box").classList.add("expanded");
+
+                // 3. Hide login inputs, show download area
+                document.getElementById("login-section").style.display = "none";
+                document.getElementById("download-area").style.display = "block";
+
+                // 4. Set the link on the Download Button
+                document.getElementById("final-download-btn").href = finalLink;
+                
+                // 5. Set the source of the PDF viewer iframe
+                document.getElementById("pdf-frame").src = finalLink;
+
+            } else {
+                // --- FAILURE ---
+                document.getElementById("error-msg").style.display = "block";
+            }
+        }
+    </script>
+
+</body>
+</html>
