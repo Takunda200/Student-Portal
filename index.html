@@ -157,7 +157,121 @@
 
     <script>
         // --- STUDENT DATA ---
-        const students = [
+                const students = [
+            { id: "CPS26107", fname: "Rufaro Georgina", sname: "Mudimu" },
+            // from file: Rutendo Vengesayi CPS26108
+            { id: "CPS26108", fname: "Rutendo", sname: "Vengesayi" },
+            // from file: Sharon Mutsa Samhere CPS26109
+            { id: "CPS26109", fname: "Sharon Mutsa", sname: "Samhere" },
+            // from file: Shylette Ngwenya CPS26110
+            { id: "CPS26110", fname: "Shylette", sname: "Ngwenya" },
+            // from file: Aiwell Kankomba CPS26053
+            { id: "CPS26053", fname: "Aiwell", sname: "Kankomba" },
+            // from file: Anyway Masunda CPS26054
+            { id: "CPS26054", fname: "Anyway", sname: "Masunda" },
+            // from file: Arnold Joseph Taurai Musapuri CPS26055
+            { id: "CPS26055", fname: "Arnold Joseph Taurai", sname: "Musapuri" },
+            // from file: Ashley Chawonza CPS26056
+            { id: "CPS26056", fname: "Ashley", sname: "Chawonza" },
+            // from file: Belma Tanaka Chikara CPS26057
+            { id: "CPS26057", fname: "Belma Tanaka", sname: "Chikara" },
+            // from file: Boaz Gweru CPS26059
+            { id: "CPS26059", fname: "Boaz", sname: "Gweru" },
+            // from file: Chipo Nelly Madzima CPS26060
+            { id: "CPS26060", fname: "Chipo Nelly", sname: "Madzima" },
+            // from file: Chishamiso Elizabeth Chinyenze CPS26062
+            { id: "CPS26062", fname: "Chishamiso Elizabeth", sname: "Chinyenze" },
+            // from file: Christine Gaza CPS26063
+            { id: "CPS26063", fname: "Christine", sname: "Gaza" },
+            // from file: Christopher Mukarati CPS26064
+            { id: "CPS26064", fname: "Christopher", sname: "Mukarati" },
+            // from file: Clara Wagoneka CPS26065
+            { id: "CPS26065", fname: "Clara", sname: "Wagoneka" },
+            // from file: Claudius Moyo CPS26066
+            { id: "CPS26066", fname: "Claudius", sname: "Moyo" },
+            // from file: Clemence Nhunha CPS26068
+            { id: "CPS26068", fname: "Clemence", sname: "Nhunha" },
+            // from file: Cynthia Moyo CPS26069
+            { id: "CPS26069", fname: "Cynthia", sname: "Moyo" },
+            // from file: David Musonza CPS26070
+            { id: "CPS26070", fname: "David", sname: "Musonza" },
+            // from file: Day Mukungunugwa CPS26071
+            { id: "CPS26071", fname: "Day", sname: "Mukungunugwa" },
+            // from file: Dorine Raidza CPS26072
+            { id: "CPS26072", fname: "Dorine", sname: "Raidza" },
+            // from file: Eunice Chisvo CPS26073
+            { id: "CPS26073", fname: "Eunice", sname: "Chisvo" },
+            // from file: Faith Badza CPS26074
+            { id: "CPS26074", fname: "Faith", sname: "Badza" },
+            // from file: Faye Madzvimbo CPS26075
+            { id: "CPS26075", fname: "Faye", sname: "Madzvimbo" },
+            // from file: Gabriel Makuvire CPS26076
+            { id: "CPS26076", fname: "Gabriel", sname: "Makuvire" },
+            // from file: Gamuchirai Kasekete CPS26077
+            { id: "CPS26077", fname: "Gamuchirai", sname: "Kasekete" },
+            // from file: Gamuchirai Mutamba CPS26078
+            { id: "CPS26078", fname: "Gamuchirai", sname: "Mutamba" },
+            // from file: Hazvinei Nkomo CPS26079
+            { id: "CPS26079", fname: "Hazvinei", sname: "Nkomo" },
+            // from file: Hellen Kabaya CPS26080
+            { id: "CPS26080", fname: "Hellen", sname: "Kabaya" },
+            // from file: Irene Mbayo CPS26081
+            { id: "CPS26081", fname: "Irene", sname: "Mbayo" },
+            // from file: James Henry Tapiwa Nindi CPS26082
+            { id: "CPS26082", fname: "James Henry Tapiwa", sname: "Nindi" },
+            // from file: Jane Mitchell Jumburu CPS26083
+            { id: "CPS26083", fname: "Jane Mitchell", sname: "Jumburu" },
+            // from file: Janet Chikomo CPS26084
+            { id: "CPS26084", fname: "Janet", sname: "Chikomo" },
+            // from file: Janet Muchina CPS26085
+            { id: "CPS26085", fname: "Janet", sname: "Muchina" },
+            // from file: Kudakwashe James Mutata CPS26087
+            { id: "CPS26087", fname: "Kudakwashe James", sname: "Mutata" },
+            // from file: Lindsay Kudzaishe Shumbambiri CPS26089
+            { id: "CPS26089", fname: "Lindsay Kudzaishe", sname: "Shumbambiri" },
+            // from file: Liobar Samoyo CPS26090
+            { id: "CPS26090", fname: "Liobar", sname: "Samoyo" },
+            // from file: Mabasa Grace Chenjerayi CPS26091
+            { id: "CPS26091", fname: "Mabasa Grace", sname: "Chenjerayi" },
+            // from file: Maudy Mahlupeka CPS26092
+            { id: "CPS26092", fname: "Maudy", sname: "Mahlupeka" },
+            // from file: Mavis Wadzanai Chirumbwana CPS26093
+            { id: "CPS26093", fname: "Mavis Wadzanai", sname: "Chirumbwana" },
+            // from file: Mercy R. Nyajeka CPS26094
+            { id: "CPS26094", fname: "Mercy R.", sname: "Nyajeka" },
+            // from file: Nacia Chikoko CPS26095
+            { id: "CPS26095", fname: "Nacia", sname: "Chikoko" },
+            // from file: Natalie Chimedza CPS26096
+            { id: "CPS26096", fname: "Natalie", sname: "Chimedza" },
+            // from file: Nesbert Tirivangani CPS26097
+            { id: "CPS26097", fname: "Nesbert", sname: "Tirivangani" },
+            // from file: Noble Tawanda Gakaka CPS26098
+            { id: "CPS26098", fname: "Noble Tawanda", sname: "Gakaka" },
+            // from file: Nornah Nesu Zhou CPS26099
+            { id: "CPS26099", fname: "Nornah Nesu", sname: "Zhou" },
+            // from file: Paidamwoyo Ndati-Chavhunduka CPS26100
+            { id: "CPS26100", fname: "Paidamwoyo", sname: "Ndati-Chavhunduka" },
+            // from file: Pride Mukoko CPS26101
+            { id: "CPS26101", fname: "Pride", sname: "Mukoko" },
+            // from file: Priscilla Marecha CPS26102
+            { id: "CPS26102", fname: "Priscilla", sname: "Marecha" },
+            // from file: Rangarirai Mutandadzi CPS26104
+            { id: "CPS26104", fname: "Rangarirai", sname: "Mutandadzi" },
+            // NEW: Sunnie Dehwenhehwe CPS26111
+            { id: "CPS26111", fname: "Sunnie", sname: "Dehwenhehwe" },
+            // NEW: Tabeth Mapuranga CPS26112
+            { id: "CPS26112", fname: "Tabeth", sname: "Mapuranga" },
+            // NEW: Takunda Huggins Nyore CPS26113
+            { id: "CPS26113", fname: "Takunda Huggins", sname: "Nyore" },
+            // NEW: Talent Chimuti CPS26114
+            { id: "CPS26114", fname: "Talent", sname: "Chimuti" },
+            // NEW: Tidings Panashe Mutsondiwa CPS26115
+            { id: "CPS26115", fname: "Tidings Panashe", sname: "Mutsondiwa" },
+            // NEW: Tinashe Dereck Chiganda CPS26116
+            { id: "CPS26116", fname: "Tinashe Dereck", sname: "Chiganda" },
+            // NEW: Violet Mutize CPS26117
+            { id: "CPS26117", fname: "Violet", sname: "Mutize" },
+            { id: "CPS26118", fname: "Yeukayi Deborah", sname: "Hockey" },
             { id: "CPS26036", fname: "Immaculate Tariro", sname: "Makuwe" },
             { id: "CPS26037", fname: "Justin", sname: "Zuze" },
             { id: "CPS26038", fname: "Killian", sname: "Marufu" },
@@ -185,7 +299,6 @@
             { id: "CPS26034", fname: "Gillian R.", sname: "Lifa" },
             { id: "CPS26035", fname: "Hamunyari", sname: "Makonese" }
         ];
-
         function checkLogin() {
             var userFname = document.getElementById("fname").value.trim().toLowerCase();
             var userSname = document.getElementById("sname").value.trim().toLowerCase();
